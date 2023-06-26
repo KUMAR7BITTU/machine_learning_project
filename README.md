@@ -6,6 +6,7 @@
 2. [Heroku Account](https://dashboard.heroku.com/apps)
 3. [VS Code IDE](https://code.visualstudio.com/download)
 4. [GIT cli](https://git-scm.com/downloads)
+5. [GIT Documentation](https://git-scm.com/docs/git)
 
 creating conda environment 
 ...
@@ -69,4 +70,35 @@ git remote -v
 To get the name of my branch
 ...
 git branch
+...
+
+To setup CI/CD pipeline, we need 3 information from heroku:-
+1, HEROKU_EMAIL=bittukumar30dec2002@gmail.com
+2, HEROKU_API_KEY=ee41d92d-0e55-4e5d-b356-8e98dab07109
+3, HEROKU_APP_NAME=
+
+To build docker image
+...
+docker build -t <image_name>:<tagname> .
+
+Note: Image name for docker must be in lowercase .
+
+To list docker image
+...
+docker images
+...
+
+To run docker image
+...
+docker run -p 5000:5000 -e PORT=5000 IMAGE_ID
+...
+
+To check the running container in docker
+...
+docker ps
+...
+
+To stop the docker container
+...
+docker stop <container_id>
 ...
