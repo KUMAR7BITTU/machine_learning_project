@@ -21,6 +21,13 @@ class HousingException (Exception):
 
         return error_message
     
+    def __str__(self):
+        return self.error_message
+    
+    # Whenever we try to print exception object then this __str__() function will run and we will be able to see print statement .
+    
 
     def __repr__(self)-> str:
         return HousingException.__name__.str()
+    # whenever we try to call housing exception then ___rep__() function will and we will get just the name housing exception .
+    
