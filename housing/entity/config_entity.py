@@ -38,3 +38,5 @@ ModelEvaluationConfig = namedtuple("ModelEvaluationConfig",["model_evaluation_fi
 
 ModelPusherConfig = namedtuple("ModelPusherConfig",["export_dir_path"])
 # After comparing our trained model with production model , suppose our trained model is better then we have to push our trained model in same folder where our production model was available and in export_dir_path .
+
+TrainingPipelineConfig = namedtuple("TrainingPipelineConfig",["artifact_dir"])
