@@ -22,13 +22,34 @@ class Pipeline:
             
             # We have written this function  to download data and extract data  and it will return DataIngestionArtifact . So, we can directly return it .
             data_ingestion.initiate_data_ingestion()
+
         except Exception as e:
             raise HousingException(e,sys) from e
-        
+
+     def start_data_validation(self):
+        pass
+
+    def start_data_transformation(self):
+        pass
+
+    def start_model_trainer(self):
+         pass
+    
+    def start_model_evaluation(self):
+        pass
+
+    def start_model_pusher(self):
+        pass
+
+    
     
     # function to run pipeline 
     def run_pipeline(self):
         try:
+
+            # data ingestion
+            data_ingestion_artifact = self.start_data_ingestion()
+
             pass
         except Exception as e:
             raise HousingException(e,sys) from e
