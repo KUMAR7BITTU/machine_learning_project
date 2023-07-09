@@ -27,4 +27,8 @@ class Pipeline:
         
     
     # function to run pipeline 
-    def run_pipeline()
+    def run_pipeline(self):
+        try:
+            pass
+        except Exception as e:
+            raise HousingException(e,sys) from e
