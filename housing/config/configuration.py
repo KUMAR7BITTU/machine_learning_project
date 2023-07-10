@@ -12,7 +12,7 @@ from housing.constant import *
 import sys,os 
 from housing.exception import HousingException
 
-class configuartion:
+class Configuartion:
    
     def __init__(self,config_file_path:str = CONFIG_FILE_PATH,current_time_stamp:str = CURRENT_TIME_STAMP) -> None:
         try:

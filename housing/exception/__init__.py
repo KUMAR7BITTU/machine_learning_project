@@ -13,6 +13,7 @@ class HousingException (Exception):
         error_message : Exception object
         error_details : object of sys module
         """
+        
         _,_ ,exec_tb = error_detail.exc_info()
 
         line_number = exec_tb.tb_frame.f_lineno
