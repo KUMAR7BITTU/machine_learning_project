@@ -5,10 +5,13 @@ from collections import namedtuple
 DataIngestionConfig = namedtuple("DataIngestionConfig",["dataset_download_url","tgz_download_dir","raw_data_dir","ingested_train_dir","ingested_test_dir"])
 
 
-DataValidationConfig = namedtuple("DataValidationConfig",["schema_file_path"])
+DataValidationConfig = namedtuple("DataValidationConfig",["schema_file_path","report_file_path","report_page_file_path"])
 
 # schema_file_path will contain information about how many numbers of columns will be there and what will be there datatype . So, where this schema file will be located that file we will specify in DataValidationConfig .
 
+# This report_page_file_path is html page through which we can check our validation report . This report_file_path is json file about our datadrift . It will contain report regarding all the data drift that i will try to detect .
+
+# In train and test file , structure of the file will be same but only number of rows will differ .
 
 DataTransformationConfig = namedtuple("DataTransformationConfig",["add_bedroom_per_room","transformed_train_dir","transformed_test_dir","preprocessed_object_file_path"])
 
