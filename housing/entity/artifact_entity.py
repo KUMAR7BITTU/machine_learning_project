@@ -15,5 +15,6 @@ DataIngestionArtifact = namedtuple("DataIngestionArtifact",["train_file_path","t
 
 # So, now we will import this DataingestionArtifact in data_ingestion.py in component folder . Refer data_ingestion.py
 
+DataValidationArtifact = namedtuple("DataValidationArtifact",["schema_file_path","report_file_path","report_page_file_path","is_validated","message"])
 
-
+# We are going to use this schema file in data transformation phase therefoee it is artifact . When i will load my dataset before doing feature engineering , to ensure that i have loaded my dataset properly along with their datatypes . In next phase when i will read my dataset , i will try to update the datatype of every column . for that we need schema file path . We need schema file for data transformation step that'sway i kept it here .
