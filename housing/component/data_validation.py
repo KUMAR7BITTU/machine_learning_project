@@ -19,7 +19,7 @@ import pandas as pd
 import json 
 
 from evidently.dashboard import Dashboard
-from evidently.dashboard.tabs import DataDriftTab 
+from evidently.dashboard.tabs import DataDriftTab
 # In DataValidation class , we also have to pass data ingestion artifact to validate it .
 class DataValidation:
     def __init__(self, data_validation_config: DataValidationConfig, data_ingestion_artifact: DataIngestionArtifact):
@@ -110,8 +110,11 @@ class DataValidation:
             report = json.load(profile.json())
             #The json.load() function takes a file-like object (such as an open file) as an argument and reads the JSON data from it. It then parses the JSON data and returns a Python object representing the data structure described in the JSON.
 
-            # Now i want to sace this report in json file .
-            with open(self,data_validation_config,report_file_path,"w") as report_file:
+            report_file_path = self.data_validation_config.report_file_path
+            report_dir = os.path.dirname(report_file_path)
+            os.makedirs(report_dir,exist_ok = True)
+            # Now i want to save this report in json file .
+            with open(report_file_path,"w") as report_file:
                 json.dump(report,report_file,indent=6)
             
             return report
@@ -129,8 +132,12 @@ class DataValidation:
 
             train_df,test_df = self.get_train_and_test_df()
             dashboard.calculate(train_df,test_df)
+            
+            report_page_file_path = self.data_validation_config.report_page_file_path
+            report_page_dir = os.path.dirname(report_page_file_path)
+            os.makedirs(report_page_dir,exist_ok = True)
 
-            dashboard.save(self.data_validation_config.report_page_file_path) # To save dashboard in required path
+            dashboard.save(report_page_file_path) # To save dashboard in required path
             
         except Exception as e:
             raise Exception(e,sys) from e
