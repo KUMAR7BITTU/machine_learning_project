@@ -5,4 +5,4 @@ sklearn
 pandas
 PyYAML
 evidently
-mljar-mercury
+dill

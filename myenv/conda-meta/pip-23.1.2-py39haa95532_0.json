@@ -8022,7 +8022,7 @@
     ],
     "paths_version": 1
   },
-  "requested_spec": "None",
+  "requested_spec": "pip",
   "sha256": "4c17362d60c1c42f1195d901024a69504dab08e6f8016e490bc964d6da20ad53",
   "size": 2887553,
   "subdir": "win-64",

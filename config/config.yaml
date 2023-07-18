@@ -25,16 +25,24 @@ data_validation_config:
 
 data_transformation_config:
   add_bedroom_per_room: true
+  # add_bedroom_per_room means adding addition column . If i want this column i will keep it's value = true and it i don't want this column i will keep it's value = false .Adding addition column basically means we are adding addition feattue .
   transformed_dir: transformed_data
+  # Suppose i applied feature engineering on our dataset then our dataset will change . So, we will store that changed dataset in tranformed_data .
   transformed_train_dir: train
+  # This transformed_data will contain train and test dataset . So, it means basicallly that we will have transformed_data folder which will contain train and test folder then train folder will contain new training set data .
   transformed_test_dir: test
   preprocessing_dir: preprocessed
+  # This preprocessed is the folder where i will store my pickle file .
   preprocessed_object_file_name: preprocessed.pkl
+  # we will try to generate pickle file from our data transformation step . This preprocessed.pkl is our pickle file name .
   
 
 model_trainer_config:
+  # once we have trained our model ,we need to save it somewhtere and we will save it in trained_model_dir directory .
   trained_model_dir: trained_model
+  # We have to specify model file name . The name of the file is model.pkl . After training the model , we wlll save that model in model.pkl file .
   model_file_name: model.pkl
+  # whenever we train our model , we accept that 60% of accuracy should be there . R-square score should match with 0.6  .
   base_accuracy: 0.6
   model_config_dir: config
   model_config_file_name: model.yaml
