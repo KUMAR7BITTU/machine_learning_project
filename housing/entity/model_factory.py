@@ -25,13 +25,13 @@ GridSearchedBestModel = namedtuple("GridSearchedBestModel", ["model_serial_numbe
 BestModel = namedtuple("BestModel", ["model_serial_number","model","best_model","best_parameters", "best_score", ])
 
 MetricInfoArtifact = namedtuple("MetricInfoArtifact",["model_name", "model_object", "train_rmse", "test_rmse", "train_accuracy","test_accuracy", "model_accuracy", "index_number"])
-
-
+# model_object means the trained model object . Any model object which is train . We will do the model comparision . train_accuracy means train R square score . test_accuracy means test R square score . If we will take the training and testing average then that will be the model accuracy . At last whichever model will give us the best accuracy that model's index number will be stored in index_number .
+# This whole thing will be stored in metric_info_artifact .
 
 def evaluate_classification_model(model_list: list, X_train:np.ndarray, y_train:np.ndarray, X_test:np.ndarray, y_test:np.ndarray, base_accuracy:float=0.6)->MetricInfoArtifact:
     pass
 
-
+# In model trainer and model evalutaion we have to use this function (evaluate_regression_model), so i declared it here (inside model_factory which is present in entity folder )
 def evaluate_regression_model(model_list: list, X_train:np.ndarray, y_train:np.ndarray, X_test:np.ndarray, y_test:np.ndarray, base_accuracy:float=0.6) -> MetricInfoArtifact:
     """
     Description:
@@ -73,9 +73,10 @@ def evaluate_regression_model(model_list: list, X_train:np.ndarray, y_train:np.n
             train_rmse = np.sqrt(mean_squared_error(y_train, y_train_pred))
             test_rmse = np.sqrt(mean_squared_error(y_test, y_test_pred))
 
-            # Calculating harmonic mean of train_accuracy and test_accuracy
+            # Calculating harmonic mean of train_accuracy and test_accuracy is called model_accuracy .
             model_accuracy = (2 * (train_acc * test_acc)) / (train_acc + test_acc)
             diff_test_train_acc = abs(test_acc - train_acc)
+            # If there huge difference between the testing and training accuracy then it is a case of underfitting and overfitting . If our training accuracy is higher than testing accuracy then that will be the case of overfitting . And if our training and testing both accuracy are worst then that is a case of underfitting means we are not able to understand our input feature and target feature .
             
             #logging all important metric
             logging.info(f"{'>>'*30} Score {'<<'*30}")
@@ -90,12 +91,15 @@ def evaluate_regression_model(model_list: list, X_train:np.ndarray, y_train:np.n
 
             #if model accuracy is greater than base accuracy and train and test score is within certain thershold
             #we will accept that model as accepted model
+            # Here the main comparision will happen .
             if model_accuracy >= base_accuracy and diff_test_train_acc < 0.05:
                 base_accuracy = model_accuracy
+                # Now we have updated our base_accuracy to model_accuracy because if we will iterate our next model then it's accurracy should be greater than our present model best accuracy .
                 metric_info_artifact = MetricInfoArtifact(model_name=model_name,    model_object=model,    train_rmse=train_rmse,    test_rmse=test_rmse,    train_accuracy=train_acc,    test_accuracy=test_acc,    model_accuracy=model_accuracy,    index_number=index_number)
 
                 logging.info(f"Acceptable model found {metric_info_artifact}. ")
             index_number += 1
+            # To go to the next model we will increase the index_number by 1 . And if our new model accuracy is greater than best accuracy of previousmodel then only that new model will go inside above if condition .
         if metric_info_artifact is None:
             logging.info(f"No model found with higher accuracy than base accuracy")
         return metric_info_artifact
@@ -149,9 +153,11 @@ class ModelFactory:
             self.grid_search_property_data: dict = dict(self.config[GRID_SEARCH_KEY][PARAM_KEY])
 
             self.models_initialization_config: dict = dict(self.config[MODEL_SELECTION_KEY])
-
+            
+            # Here whichever models we will have , we will store it before training in self.initialized_model_list . Before calling fit method whichever models we will have , we will store it here .
             self.initialized_model_list = None
             self.grid_searched_best_model_list = None
+            # After performing gridsearch parameter , the best method we got , we will store that in grid_searched_best_model_list 
 
         except Exception as e:
             raise HousingException(e, sys) from e

@@ -42,13 +42,16 @@ model_trainer_config:
   trained_model_dir: trained_model
   # We have to specify model file name . The name of the file is model.pkl . After training the model , we wlll save that model in model.pkl file .
   model_file_name: model.pkl
-  # whenever we train our model , we accept that 60% of accuracy should be there . R-square score should match with 0.6  .
+  # whenever we train our model , we accept that 60% of accuracy should be there . R-square score should match with 0.6  . If it is less than that then we will not accept the model .
   base_accuracy: 0.6
+
+  # Next we will have config folder which will contain model.yaml file and it will provide configuration about our model . Configuration like which paramete we want to try and which model we want to train .
   model_config_dir: config
   model_config_file_name: model.yaml
 
 
 model_evaluation_config:
+  # model_evaluation.yaml will give us the location the best model which is available in the production .
   model_evaluation_file_name: model_evaluation.yaml
   
 

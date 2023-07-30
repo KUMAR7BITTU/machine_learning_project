@@ -24,3 +24,11 @@ DataTransformationArtifact = namedtuple("DataTransformationArtifact",["is_transf
 # We require transformed_train_file_path and transformed_test_file_path because if we do training in our train and test dataset , then we will store those transformed train and test dataset in transformed_train_file_path and transformed_test_file_path respectively .
 
 # When we try to create pickle of our transformed dataset then we will store that pickle file in preprocessed_object_file_path .
+
+
+ModelTrainerArtifact = namedtuple("ModelTrainerArtifact", ["is_trained", "message", "trained_model_file_path", "train_rmse", "test_rmse", "train_accuracy", "test_accuracy", "model_accuracy"])
+
+ModelEvaluationArtifact = namedtuple("ModelEvaluationArtifact", ["is_model_accepted", "evaluated_model_path"])
+
+ModelPusherArtifact = namedtuple("ModelPusherArtifact", ["is_model_pusher", "export_model_file_path"])
+# ModelPusherArtifact will contain is_model_pusher which will tell is our model is pushed or not . Alongwith it will also contain export_model_file_path which will contain the location of where our model file path is located .

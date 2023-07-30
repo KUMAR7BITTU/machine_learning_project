@@ -1,0 +1,51 @@
+# grid_search allow us to try with different parameter .It return BaseEstimator and BaseParameter . We use grid for hyperparameter tunning . If we found some algorithm working for us but if we wanted to tune their parameter , which parameter may work better for that we use grid_search cv
+grid_search:
+  class: GridSearchCV
+  # GridSearchCV class is present inside sklean.model_selection module
+  module: sklearn.model_selection
+  params:
+    # we will create 5 cross validation fold . 4 fold for training and remaining 1 fold for the testing .
+    cv: 5
+    # verbose is just like printing the information .
+    verbose: 2
+model_selection:
+  # Our main objective in model selection is we have to pick the best model from all the below mentioned model .
+  module_0:
+    class: LinearRegression
+    module: sklearn.linear_model
+    params:
+      fit_intercept: true
+    # here search parameter is for grid search .
+    search_param_grid:
+      fit_intercept:
+      - true
+      - false
+      # First it will train with by setting true and then it will set with by setting false .
+  module_1:
+    class: RandomForestRegressor
+    module: sklearn.ensemble
+    params:
+      min_samples_leaf: 3
+    search_param_grid:
+      min_samples_leaf:
+      - 4
+      - 6
+      - 12
+      # it internally use n-number of decision tree .
+      # It will just tell us how many decision tree we wanted to train .
+      n_estimators:
+      - 100
+      - 200
+      bootstrap:
+      - true
+      - false
+      # If the dataset which is not used in training if we use to evalute it then it is called oob-score  .
+      oob_score:
+      - true
+      - false
+      max_depth:
+      - 2
+      - 4
+      - 6
+    
+    

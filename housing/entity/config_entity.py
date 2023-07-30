@@ -23,13 +23,16 @@ DataTransformationConfig = namedtuple("DataTransformationConfig",["add_bedroom_p
 
 # As of now in our dataset , there is no add_bedroom_per_room column . So, if we want to add this column , then we will pass true in add_bedroom_per_room else pass false . It just we are just creating an extra column whose name is add_bedroom_per_room .
 
-ModelTrainerConfig = namedtuple("ModelTrainerConfig",["trained_model_file_path","base_accuracy"])
+ModelTrainerConfig = namedtuple("ModelTrainerConfig",["trained_model_file_path","base_accuracy","model_config_file_path"])
 
 # If we train a model then we create a pickle file from that trained model . So, we have to save that file somewhere .We can  specity the location by trained_model_file_path where we saved our file ..
 
 # If suppose i am training a model and that model is not giving accuracy greater than base_accuracy then i will not accept that model .
 
 # There is only one trained_model_file_path because if we have 2 to 3 models then we have to choose the best model from them . We have to train that specific model only that'sway we have only one trained_model_file_path .
+
+# We will store configuration of model in model_config_file_path .
+
 
 ModelEvaluationConfig = namedtuple("ModelEvaluationConfig",["model_evaluation_file_path","time_stamp"])
 
